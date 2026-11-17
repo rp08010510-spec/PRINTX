@@ -370,5 +370,21 @@ function verifyStudentOTP() {
 </script>
 <!-- END PRINTX STUDENT LOGIN -->
 
+<!-- PRINTX Supabase Connection -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const SUPABASE_URL = "YOUR_PROJECT_URL";
+const SUPABASE_KEY = "YOUR_PUBLISHABLE_KEY";
+
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+console.log("PRINTX Supabase Connected!");
+</script>
+
+
 </body>
 </html>
