@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PRINTX - Student Printing</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #f4f7fc;
+  color: #172033;
+}
+
+header {
+  background: #ffffff;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px #00000010;
+}
+
+.logo {
+  font-size: 27px;
+  font-weight: 800;
+  color: #1769e0;
+}
+
+.logo span {
+  color: #172033;
+}
+
+.login {
+  background: #1769e0;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+}
+
+.hero {
+  padding: 35px 22px;
+  background: linear-gradient(135deg,#1769e0,#55a4ff);
+  color: white;
+}
+
+.hero h1 {
+  font-size: 29px;
+  margin-bottom: 12px;
+}
+
+.hero p {
+  line-height: 1.6;
+  opacity: .95;
+}
+
+.container {
+  padding: 22px;
+  max-width: 650px;
+  margin: auto;
+}
+
+.card {
+  background: white;
+  padding: 22px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 3px 15px #00000009;
+}
+
+.card h2 {
+  font-size: 20px;
+  margin-bottom: 17px;
+}
+
+.upload {
+  border: 2px dashed #1769e0;
+  background: #f2f7ff;
+  border-radius: 12px;
+  padding: 28px 12px;
+  text-align: center;
+}
+
+.upload input {
+  width: 100%;
+  margin-top: 15px;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin: 17px 0 9px;
+}
+
+select, input[type="number"] {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #d6dce7;
+  border-radius: 9px;
+  background: white;
+  font-size: 15px;
+}
+
+.primary {
+  width: 100%;
+  background: #1769e0;
+  color: white;
+  border: none;
+  padding: 16px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+#fileName {
+  color: #1769e0;
+  font-size: 13px;
+  margin-top: 12px;
+  word-break: break-word;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  color: #7b8494;
+  font-size: 13px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">PRINT<span>X</span></div>
+  <button class="login" onclick="alert('Student login coming soon!')">
+    Login
+  </button>
+</header>
+
+<section class="hero">
+  <h1>Print Smart. Print Easy.</h1>
+  <p>Upload your documents, choose your printing options and get your prints from your nearby shop.</p>
+</section>
+
+<main class="container">
+
+  <section class="card">
+    <h2>Start Your Print Order</h2>
+
+    <div class="upload">
+      <h3>Upload Your PDF</h3>
+      <p>Select a document from your phone</p>
+      <input type="file" id="pdfFile" accept=".pdf,application/pdf">
+      <div id="fileName">No file selected</div>
+    </div>
+
+    <label for="printSide">Printing Side</label>
+    <select id="printSide">
+      <option value="Front Side Only">Front Side Only</option>
+      <option value="Back Side Only">Back Side Only</option>
+      <option value="Both Sides">Both Sides (Front & Back)</option>
+    </select>
+
+    <label for="copies">Number of Copies</label>
+    <input type="number" id="copies" min="1" max="100" value="1">
+
+    <label for="color">Print Type</label>
+    <select id="color">
+      <option>Black & White</option>
+      <option>Colour</option>
+    </select>
+
+    <button class="primary" onclick="placeOrder()">
+      Continue
+    </button>
+  </section>
+
+</main>
+
+<footer>
+  © 2026 PRINTX. All Rights Reserved.
+</footer>
+
+<script>
+const fileInput = document.getElementById("pdfFile");
+
+fileInput.addEventListener("change", function() {
+  const file = this.files[0];
+
+  if (file) {
+    if (file.type !== "application/pdf") {
+      alert("Please select a PDF file.");
+      this.value = "";
+      return;
+    }
+
+    document.getElementById("fileName").textContent =
+      "Selected: " + file.name;
+  }
+});
+
+function placeOrder() {
+  const file = fileInput.files[0];
+
+  if (!file) {
+    alert("Please upload a PDF first!");
+    return;
+  }
+
+  const side = document.getElementById("printSide").value;
+  const copies = document.getElementById("copies").value;
+  const color = document.getElementById("color").value;
+
+  if (copies < 1 || copies > 100) {
+    alert("Please enter copies between 1 and 100.");
+    return;
+  }
+
+  alert(
+    "PRINTX Order Preview\n\n" +
+    "File: " + file.name + "\n" +
+    "Printing: " + side + "\n" +
+    "Copies: " + copies + "\n" +
+    "Type: " + color +
+    "\n\nBackend connection coming soon!"
+  );
+}
+</script>
+
+</body>
+</html>
