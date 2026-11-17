@@ -236,5 +236,139 @@ function placeOrder() {
 }
 </script>
 
+<!-- PRINTX STUDENT LOGIN -->
+<style>
+.login-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.65);
+  z-index: 999;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
+
+.login-box {
+  background: white;
+  width: 100%;
+  max-width: 400px;
+  padding: 25px;
+  border-radius: 18px;
+  color: #172033;
+}
+
+.login-box h2 {
+  color: #1769e0;
+  margin-bottom: 8px;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 14px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 9px;
+  font-size: 16px;
+}
+
+.login-box button {
+  width: 100%;
+  padding: 14px;
+  background: #1769e0;
+  color: white;
+  border: none;
+  border-radius: 9px;
+  margin-top: 12px;
+  font-size: 16px;
+}
+
+.close-login {
+  background: #eee !important;
+  color: #222 !important;
+}
+
+#otpArea {
+  display: none;
+}
+</style>
+
+<div class="login-overlay" id="studentLogin">
+  <div class="login-box">
+    <h2>PRINTX Student</h2>
+    <p>Create your student account</p>
+
+    <div id="detailsArea">
+      <input id="studentName"
+        type="text"
+        placeholder="Student Full Name">
+
+      <input id="studentMobile"
+        type="tel"
+        placeholder="10-digit Mobile Number"
+        maxlength="10">
+
+      <button onclick="sendStudentOTP()">
+        Send OTP
+      </button>
+    </div>
+
+    <div id="otpArea">
+      <p>Enter the OTP sent to your mobile.</p>
+      <input id="studentOTP"
+        type="text"
+        placeholder="Enter OTP"
+        maxlength="6">
+
+      <button onclick="verifyStudentOTP()">
+        Verify OTP
+      </button>
+    </div>
+
+    <button class="close-login"
+      onclick="closeStudentLogin()">
+      Close
+    </button>
+
+    <p id="loginMessage"></p>
+  </div>
+</div>
+
+<script>
+const loginButton = document.querySelector(".login");
+
+if (loginButton) {
+  loginButton.onclick = function() {
+    document.getElementById("studentLogin").style.display = "flex";
+  };
+}
+
+function closeStudentLogin() {
+  document.getElementById("studentLogin").style.display = "none";
+}
+
+function sendStudentOTP() {
+  const name = document.getElementById("studentName").value.trim();
+  const mobile = document.getElementById("studentMobile").value.trim();
+
+  if (!name) {
+    alert("Please enter your name");
+    return;
+  }
+
+  if (!/^[6-9]\d{9}$/.test(mobile)) {
+    alert("Enter a valid 10-digit mobile number");
+    return;
+  }
+
+  alert("Student details accepted. Real OTP service is not connected yet.");
+}
+  
+function verifyStudentOTP() {
+  alert("OTP verification will be activated after backend setup.");
+}
+</script>
+<!-- END PRINTX STUDENT LOGIN -->
+
 </body>
 </html>
